@@ -15,11 +15,11 @@ while i > 0:
    i = i-1
 
 
-#load the by park (2000 - 2022)
-by_park = pd.read_csv('Annual Visitation By Park.csv')
+#load the by park (2000 - 2022) and convert Year & Month columns to date
+by_park = pd.read_csv('Annual Visitation By Park.csv', parse_dates= {"Date" : ["Year","Month"]},  keep_date_col=True)
 
 #select only important columns from dataset
-by_park = by_park[['ParkName', 'UnitCode', 'ParkType', 'Region', 'State', 'Year', 'Month', 'RecreationVisits']]
+by_park = by_park[['ParkName', 'UnitCode', 'ParkType', 'Region', 'State', 'Date', 'Year', 'Month', 'RecreationVisits']]
 
 #change visit from string to integers 
 by_park['RecreationVisits'] = by_park['RecreationVisits'].replace(',','', regex=True)
